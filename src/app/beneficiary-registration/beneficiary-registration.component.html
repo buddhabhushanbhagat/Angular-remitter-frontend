@@ -1,0 +1,160 @@
+<app-header></app-header>
+
+<div class="container">
+  <form [formGroup]="dropDownForm" (ngSubmit)="onDropDown()">
+    <div class="row" style=" margin-top: 2%;">
+     
+      <div class="col-md-2 mb-4 pb-2"></div>
+      
+      <div class="col-md-3 mb-4 pb-2">
+        <select   class="form-control" formControlName="accountNumber" id="raids">
+          <option value="">Account Number</option>
+          <option *ngFor="let beneficiarySingle of beneficiaryUnderRemitter;" [value]="beneficiarySingle.accountNumber">
+              {{beneficiarySingle.accountNumber}}
+          </option>
+      </select>  
+      </div> 
+      <div class="col-md-6 mb-4 pb-2">
+        <button style="margin-left: 10; width: 100px;" [disabled]="dropDownForm.invalid" type="submit" class="btn btn-success ">Fetch  </button>
+        <button style="margin-left: 10%; width: 100px;" [disabled]="beneficiaryForm.invalid" type="submit" class="btn btn-warning" (click) = "updateBeneficiary()">Update</button>
+        <button style="margin-left: 10%; width: 100px;"[disabled]="dropDownForm.invalid" type="submit" class="btn btn-danger" (click) = "deleteBeneficiary()" >Delete</button>
+      </div>
+      
+      <div class="col-md-1 mb-4 pb-2"></div>
+   
+    </div>
+  </form>
+  
+  <h1 class="text-center">Beneficiary Registration</h1>
+  <form [formGroup]="beneficiaryForm" (ngSubmit)="beneficiary()">
+    <!-- <div class="form-group"></div> -->
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="text" class="form-control"  placeholder="Enter Name" formControlName="name">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.name.invalid">Name required</small>
+        <span class="text-success" *ngIf="beneficiaryForm.controls.name.valid">Good</span>
+      </div>
+    </div> 
+
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="text" class="form-control"  placeholder="Enter Account Number" formControlName="accountNumber">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.accountNumber.invalid">Account Number required</small>
+        <span class="text-success" *ngIf="beneficiaryForm.controls.accountNumber.valid">Good</span>
+      </div>
+        
+      </div> 
+
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="text" class="form-control"  placeholder="Enter IFSC Code" formControlName="ifscCode">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.ifscCode.invalid">IFSC Code required</small>
+        <span class="text-success" *ngIf="beneficiaryForm.controls.ifscCode.valid">Good</span>
+
+      </div>
+    </div> 
+  
+
+   
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="text" class="form-control"  placeholder="Enter Email Address" formControlName="email">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.email.invalid">Email Address required</small>        
+        <span class="text-success" *ngIf="beneficiaryForm.controls.email.valid">Good</span>
+      </div> 
+    </div> 
+
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="text" class="form-control"  placeholder="Enter Address" formControlName="address">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.address.invalid">Address required</small>
+        <span class="text-success" *ngIf="beneficiaryForm.controls.address.valid">Good</span>
+
+      </div> 
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="number" class="form-control"  placeholder="Enter Max Transfer Limit" formControlName="maxTsfrLimit">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.maxTsfrLimit.invalid"> MaxLimit required</small>
+        <span class="text-success" *ngIf="beneficiaryForm.controls.maxTsfrLimit.valid">Good</span>
+
+      </div> 
+   </div>
+
+   <div class="row">
+    <div class="col-md-3 mb-4 pb-2"></div>
+    <div class="col-md-6 mb-4 pb-2">
+      <input type="text" [value] = "remitterId" class="form-control"  formControlName="customerId" readonly placeholder="Default Remitter Id">
+
+    </div>
+    <div class="col-md-3 mb-4 pb-2">
+      <!-- <small class="text-danger" *ngIf="beneficiaryForm.controls.transferLimit.tou"> MaxLimit required</small>
+      <span class="text-success" *ngIf="beneficiaryForm.controls.transferLimit.valid">Good</span> -->
+
+    </div> 
+ </div>
+   
+   <div class="row" style="margin: auto; margin-left: 20%;">
+    <div class="col-md-3 mb-4 pb-2"></div>
+    <div class="col-md-6 mb-4 pb-2" >
+      <div class="form-group">
+        <label for="">Account Status:</label>
+        <input type="radio" formControlName="accountStatus"  class="form-check-input" id="active" value="1" >Active
+        <input type="radio"formControlName="accountStatus" class="form-check-input" id="Inactive" value="0" >Inactive
+      </div>
+    </div>
+    <div class="col-md-3 mb-4 pb-2">
+      
+    </div>
+  </div>
+ 
+
+  <div class="row">
+    <div class="col-md-3 mb-4 pb-2"></div>
+    <div class="col-md-2 mb-4 pb-2" >
+      <span *ngIf="beneficiaryForm.invalid" style="color: red;">* All Feilds are required</span>    
+      <span *ngIf="beneficiaryForm.valid" style="color: green;" >Good To Register Beneficiary</span>    
+    </div>
+    <div class="col-md-3 mb-4 pb-2">
+      <!-- <button type="submit" [disabled]="beneficiaryForm.invalid" class="btn btn-outline-primary">Create</button> -->
+      <button   type="submit" [disabled]="beneficiaryForm.invalid" class="btn btn-success">Register</button>
+      <button  style=" margin-left: 20px; width: 5.5rem;" type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+    
+    <div class="col-md-3 mb-4 pb-2"></div>
+  </div>
+
+
+
+ 
+  <div>
+  
+  </div>
+    
+  </form>
+</div>
+
+  <!-- <div class="input-group" id="search">
+    <input type="search" class="form-control rounded"  name="accountNumber" placeholder="Enter account number" aria-label="Search" aria-describedby="search-addon" />
+    <button type="button" class="btn btn-outline-danger" (click)="beneficiaryByAN()">View</button>
+  </div> -->
+  <app-footer></app-footer>

@@ -1,0 +1,66 @@
+<app-header></app-header>
+<section class="gradient-custom">
+    <div class="container my-1 py-1">
+      <div class="row d-flex justify-content-center py-5">
+        <div class="col-md-6 col-lg-5 col-xl-4">
+          <div class="card" style="border-radius: 15px; width: 400px;">
+            <div class="card-body p-5">
+              <form [formGroup]="fundTransferForm" (ngSubmit)="onTransfer()">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="form-outline">
+                    <input type="text"  id="typeText" class="form-control form-control-lg" siez="17"
+                      placeholder="Remitter Acc Number" minlength="10" maxlength="10" [value]="remAccNumber"  readonly/>
+                    <label class="form-label" for="typeText">Remitter Account Number</label>
+                  </div>
+                
+                </div>
+                <div class="d-flex justify-content-between align-items-center pb-2">
+                   
+                   <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                      <select  formControlName="accountNumber"  class="form-control" id="typeExp">
+                          <option value=""> Account Number</option>
+                          <option *ngFor="let beneficiarySingle of beneficiaryUnderRemitter;" [value]="beneficiarySingle.accountNumber">
+                              {{beneficiarySingle.accountNumber}}
+                          </option>
+                      </select>   
+                    <label class="form-label" for="typeExp">Bene Account Number</label>
+                  </div>
+                  </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input  formControlName="amounTransfered" type="number" id="typeText2" class="form-control form-control-lg"
+                          placeholder="Amount" />
+                        <label class="form-label" for="typeText2">Amount</label>
+                      </div>
+                    </div>
+                   </div>
+        
+                  </div>
+                <div>
+                  <div >
+                    <input formControlName="narration"  type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                      placeholder="summery of transaction" />
+                    <label class="form-label" for="typeName">Transaction Narration</label>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-14">
+                    <div class="form-outline">
+                       
+                        <button  style="margin-left: 120%;"  type="submit" class="btn btn-success ">Transfer</button>
+                        
+        
+                    </div>
+                  </div>
+  
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<app-footer></app-footer>

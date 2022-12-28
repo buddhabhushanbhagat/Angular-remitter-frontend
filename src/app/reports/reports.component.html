@@ -1,0 +1,61 @@
+<app-header></app-header>
+<form [formGroup]="reportForm" (ngSubmit)="report()">
+    <!-- <div class="form-group"></div> -->
+    <div class="row">
+      <div class="col-md-4 mb-4 pb-2">
+        <label for="startDate">From Date</label>
+        <input type="date" class="form-control"  placeholder="From Date" formControlName="startDate">
+        <small class="text-danger" *ngIf="reportForm.controls.startDate.invalid">Invalid date</small>
+        <span class="text-success" *ngIf="reportForm.controls.startDate.valid">Good</span>
+      </div>
+      <div class="col-md-4 mb-4 pb-2">
+        <label for="startDate">To Date</label>
+        <input type="date" class="form-control"  placeholder="To Date" formControlName="endDate">
+        <small class="text-danger" *ngIf="reportForm.controls.endDate.invalid">Invalid date</small>
+        <span class="text-success" *ngIf="reportForm.controls.endDate.valid">Good</span>  
+    </div>
+      <div class="col-md-2 mb-4 pb-2">
+        <br>
+        <button style="margin-left: 20%;" [disabled]="reportForm.invalid" type="submit" class="btn btn-success ">Get Details</button>
+      </div>
+      <div class="col-md-2 mb-4 pb-2">
+        <br>
+        <button [disabled]="reportForm.invalid" type="submit" class="btn btn-success ">Get Details</button>
+      </div>
+    </div> 
+</form>   
+<p *ngIf="transactionDetails!=null;then showtransaction;else errorcontent"></p>
+<ng-template #errorcontent>
+    
+    <h4 data-text="Opps! transactions not found" >
+        Opps! Page not found
+     </h4>
+</ng-template>
+<ng-template #showtransaction >
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Transferred Amount </th>
+            <th scope="col">Remitter Balance</th>
+            <th scope="col">Beneficiary  Balance</th>
+            <th scope="col">Narration</th>
+            <th scope="col">Date of Transaction</th>
+            <th scope="col">Transaction Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactionDetails">
+            <th scope="row">{{transaction.transactionId}}</th>
+            <td>{{transaction.amounTransfered}}</td>
+            <td>{{transaction.remitterAccountBalance}}</td>
+            <td>{{transaction.beneficiaryAccountBalance}}</td>
+            <td>{{transaction.narration}}</td>
+            <td>{{transaction.transactionDate}}</td>
+            <td>{{transaction.responceCode}}</td>
+
+        </tr>  
+        </tbody>
+      </table>
+</ng-template>
+<app-footer></app-footer>

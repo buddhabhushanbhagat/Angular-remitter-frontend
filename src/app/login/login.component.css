@@ -1,0 +1,12 @@
+.container{
+    border: 1px solid rgb(231, 219, 219);
+    /* box-shadow: 2px 2px 1px 1px; */
+    width: 50%;
+    /* background-image: url("OIP.jpg"); */
+    height: 40%;
+    margin-top: 10%;
+    padding: 10px;
+   /* background-repeat: inherit; */
+}
+
+
