@@ -1,7 +1,31 @@
 
 <app-header></app-header>
 
-<h1 class="text-center">Remitter Registration</h1><div class="container">
+<form [formGroup]="dropDownForm" (ngSubmit)="onDropDown()">
+  <div class="row" style=" margin-top: 10%;">
+   
+    <div class="col-md-2 mb-4 pb-2"></div>
+    
+    <div class="col-md-3 mb-4 pb-2">
+      <select   class="form-control" formControlName="accountNumber" >
+        <option value="">Remitter Account Number</option>
+        <option *ngFor="let remitterSingle of remitterDetails;" [value]="remitterSingle.account.accountNumber">
+            {{remitterSingle.account.accountNumber}}
+        </option>
+    </select>  
+    </div> 
+    <div class="col-md-6 mb-4 pb-2">
+      <button style="margin-left: 10; width: 100px;" [disabled]="dropDownForm.invalid" type="submit" class="btn btn-success ">Fetch  </button>
+      <button style="margin-left: 10%; width: 100px;" [disabled]="remitterForm.invalid" type="submit" class="btn btn-warning" (click) = "updateRemitter()">Update</button>
+      <button style="margin-left: 10%; width: 100px;"[disabled]="dropDownForm.invalid" type="submit" class="btn btn-danger" (click) = "deleteRemitter()" >Delete</button>
+    </div>
+    
+    <div class="col-md-1 mb-4 pb-2"></div>
+ 
+  </div>
+</form>
+
+<h1 class="text-center">Remitter Registration</h1>
     <form [formGroup]="remitterForm" (ngSubmit)="remitrerCall()">
       <!-- <div class="form-group"></div> -->
     
@@ -11,18 +35,17 @@
           <input type="text" class="form-control"  placeholder="Enter Name" formControlName="name">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.name.invalid">Name required</small>
+          <span class="text-danger" *ngIf="remitterForm.controls.name.invalid && remitterForm.controls.name.touched">Name required</span>
           <span class="text-success" *ngIf="remitterForm.controls.name.valid">Good</span>
         </div>
-     
-      
+        </div>
       <div class="row">
         <div class="col-md-3 mb-4 pb-2"></div>
         <div class="col-md-6 mb-4 pb-2">
           <input type="text" class="form-control"  placeholder="Enter Email Address" formControlName="email">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.email.invalid">Email Address required</small>        
+          <span class="text-danger" *ngIf="remitterForm.controls.email.invalid && remitterForm.controls.email.touched">Email Address required</span>        
           <span class="text-success" *ngIf="remitterForm.controls.email.valid">Good</span>
         </div> 
       </div> 
@@ -33,7 +56,7 @@
           <input type="text" class="form-control"  placeholder="Enter Address" formControlName="address">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.address.invalid">Address required</small>
+          <span class="text-danger" *ngIf="remitterForm.controls.address.invalid && remitterForm.controls.address.touched">Address required</span>
           <span class="text-success" *ngIf="remitterForm.controls.address.valid">Good</span>
  
         </div> 
@@ -45,12 +68,23 @@
           <input type="password" class="form-control"  placeholder="Enter Password" formControlName="password">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.password.invalid">Password required</small>
+          <span class="text-danger" *ngIf="remitterForm.controls.password.invalid && remitterForm.controls.password.touched">Password required</span>
           <span class="text-success" *ngIf="remitterForm.controls.password.valid">Good</span>
 
         </div> 
      </div>
-    </div>
+
+     <div class="row">
+      <div class="col-md-3 mb-4 pb-2"></div>
+      <div class="col-md-6 mb-4 pb-2">
+        <input type="number" class="form-control"  placeholder="Enter Mobile Number" formControlName="contactNo">
+      </div>
+      <div class="col-md-3 mb-4 pb-2">
+        <span class="text-danger" *ngIf="remitterForm.controls.contactNo.invalid && remitterForm.controls.contactNo.touched">Contact Number required</span>
+        <span class="text-success" *ngIf="remitterForm.controls.contactNo.valid">Good</span>
+
+      </div> 
+   </div>
 
     
       
@@ -60,7 +94,7 @@
           <input type="text" class="form-control"  placeholder="Enter Account Number" formControlName="accountNumber">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.accountNumber.invalid">Account Number required</small>
+          <span class="text-danger" *ngIf="remitterForm.controls.accountNumber.invalid && remitterForm.controls.accountNumber.touched">Account Number required</span>
           <span class="text-success" *ngIf="remitterForm.controls.accountNumber.valid">Good</span>
         </div>
           
@@ -72,7 +106,7 @@
           <input type="text" class="form-control"  placeholder="Enter Account Balance" formControlName="accountBalance">
         </div>
         <div class="col-md-3 mb-4 pb-2">
-          <small class="text-danger" *ngIf="remitterForm.controls.accountBalance.invalid">Account Balance required</small>
+          <span class="text-danger" *ngIf="remitterForm.controls.accountBalance.invalid && remitterForm.controls.accountBalance.touched">Account Balance required</span>
           <span class="text-success" *ngIf="remitterForm.controls.accountBalance.valid">Good</span>
 
         </div>
@@ -87,7 +121,7 @@
           <label for="">Account Status:</label>
           <input type="radio" class="form-check-input" id="active" value="1" formControlName="accountStatus">Active
           <input type="radio" class="form-check-input" id="Inactive" value="0" formControlName="accountStatus">Inactive
-          <small style="margin-left: 20px;" class="text-danger" *ngIf="remitterForm.controls.accountStatus.invalid">Account Status required</small>
+          <span style="margin-left: 20px;" class="text-danger" *ngIf="remitterForm.controls.accountStatus.invalid">Account Status required</span>
           <span class="text-success" *ngIf="remitterForm.controls.accountStatus.valid">Good</span>
 
         </div>
@@ -112,9 +146,9 @@
       </div>
       
       <div class="col-md-3 mb-4 pb-2"></div>
-    </div>
+      </div>
 
       
     </form>
-  </div>
+ 
   <app-footer></app-footer>

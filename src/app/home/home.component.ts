@@ -3,10 +3,6 @@ import { RemitterServiceService } from '../remitter-service.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FormControl, FormGroup } from '@angular/forms';
 
-const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,22 +10,22 @@ const year = today.getFullYear();
 })
 export class HomeComponent implements OnInit{
   private Service: RemitterServiceService;
-  
+  remitterDetails:any;
   constructor(Service1: RemitterServiceService) {
     this.Service = Service1;
   }
   ngOnInit(): void {
     // this.login();
-   console.log(this.Service.getCustomerId()) 
-  }
+    
+    // this.remitterDetails = this.Service.getSharedUser();
+    this.Service.getRemittersDetailsById(this.Service.getAccountNumber()).subscribe(res=>{
+      this.remitterDetails = res;
+      console.log(this.remitterDetails)
+    },err=>{
+      console.log("error in getting remitter details with account number "+this.Service.getAccountNumber())
+    })
 
-  campaignOne = new FormGroup({
-    start: new FormControl(new Date(year, month, 13)),
-    end: new FormControl(new Date(year, month, 16)),
-  });
-  campaignTwo = new FormGroup({
-    start: new FormControl(new Date(year, month, 15)),
-    end: new FormControl(new Date(year, month, 19)),
-  });
+   console.log(this.remitterDetails) 
+  }
   
 }

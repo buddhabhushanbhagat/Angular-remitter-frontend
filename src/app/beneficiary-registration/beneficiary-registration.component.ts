@@ -78,7 +78,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     },
       error => {
         console.log(error)
-        alert("Registration faild......")
+        alert("Registration faild! \n"+error.error)
         
       }
     );

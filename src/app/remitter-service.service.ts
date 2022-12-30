@@ -16,12 +16,32 @@ export class RemitterServiceService {
 }
 
        login=(data:any)=>{
-        return this.http.post("http://localhost:8001/login",data)
+        return this.http.post("http://localhost:8001/remitter/login",data)
        }
 
        remitterRegistration = (data:any) =>{
-        return this.http.post("http://127.0.0.1:8001/register",data)
+        return this.http.post("http://127.0.0.1:8001/remitter/register",data)
        }
+
+       getAllRemittersDetaild = ()=>{
+        return this.http.get("http://localhost:8001/remitter")
+       }  
+       
+       getRemittersDetailsById = (remitterId:any)=>{
+        return this.http.get("http://localhost:8001/remitter/account/"+remitterId)
+       }
+
+       getRemitterByAccountNumber = (accountNumber:any)=>{
+        return this.http.get("http://localhost:8001/remitter/account/"+accountNumber)
+       }
+
+       remitterUpdate = (data:any,remitterId:any) =>{
+        return this.http.put("http://localhost:8001/remitter/"+remitterId,data)
+       }
+
+       remitterDeleteByAccountNumber =(accountNumber: any) => {
+        return this.http.delete("http://127.0.0.1:8001/remitter/account/"+accountNumber);
+      }
 
        beneficiaryRegistration=(data:any)=>{
         return this.http.post("http://127.0.0.1:8002/beneficiary",data)
@@ -48,7 +68,6 @@ export class RemitterServiceService {
         return this.http.get("http://127.0.0.1:8003/transaction?transactionStartDate="+fromDate+"&transactionEndDate="+toDate);
       }
 
-
    setCustomerId(val:any){
     this.customerId = val;
   }
@@ -72,8 +91,5 @@ export class RemitterServiceService {
    getSharedUser():Number{
     return this.logeedInUser;
   }
- 
- 
-
            
 }

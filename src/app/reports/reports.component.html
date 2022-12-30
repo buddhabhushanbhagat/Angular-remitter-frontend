@@ -1,17 +1,17 @@
 <app-header></app-header>
-<form [formGroup]="reportForm" (ngSubmit)="report()">
+<form [formGroup]="reportForm" (ngSubmit)="report()" style=" margin-top: 5%;">
     <!-- <div class="form-group"></div> -->
     <div class="row">
       <div class="col-md-4 mb-4 pb-2">
         <label for="startDate">From Date</label>
         <input type="date" class="form-control"  placeholder="From Date" formControlName="startDate">
-        <small class="text-danger" *ngIf="reportForm.controls.startDate.invalid">Invalid date</small>
+        <small class="text-danger" *ngIf="reportForm.controls.startDate.invalid && reportForm.controls.startDate.touched">select date</small>
         <span class="text-success" *ngIf="reportForm.controls.startDate.valid">Good</span>
       </div>
       <div class="col-md-4 mb-4 pb-2">
         <label for="startDate">To Date</label>
         <input type="date" class="form-control"  placeholder="To Date" formControlName="endDate">
-        <small class="text-danger" *ngIf="reportForm.controls.endDate.invalid">Invalid date</small>
+        <small class="text-danger" *ngIf="reportForm.controls.endDate.invalid && reportForm.controls.endDate.touched">select date</small>
         <span class="text-success" *ngIf="reportForm.controls.endDate.valid">Good</span>  
     </div>
       <div class="col-md-2 mb-4 pb-2">
@@ -20,15 +20,15 @@
       </div>
       <div class="col-md-2 mb-4 pb-2">
         <br>
-        <button [disabled]="reportForm.invalid" type="submit" class="btn btn-success ">Get Details</button>
+        <button [disabled]="reportForm.invalid" type="submit" class="btn btn-success "  (click) = "download()">Download</button>
       </div>
     </div> 
 </form>   
-<p *ngIf="transactionDetails!=null;then showtransaction;else errorcontent"></p>
+<p *ngIf="transactionDetails.length >0;then showtransaction;else errorcontent"></p>
 <ng-template #errorcontent>
     
     <h4 data-text="Opps! transactions not found" >
-        Opps! Page not found
+        Opps! transactions not found
      </h4>
 </ng-template>
 <ng-template #showtransaction >
@@ -52,7 +52,7 @@
             <td>{{transaction.beneficiaryAccountBalance}}</td>
             <td>{{transaction.narration}}</td>
             <td>{{transaction.transactionDate}}</td>
-            <td>{{transaction.responceCode}}</td>
+            <td>{{transaction.responseStatus}}</td>
 
         </tr>  
         </tbody>

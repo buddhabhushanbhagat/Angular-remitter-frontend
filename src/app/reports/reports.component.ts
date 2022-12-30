@@ -11,7 +11,7 @@ import { RemitterServiceService } from '../remitter-service.service';
 export class ReportsComponent implements OnInit{
 
 private service: RemitterServiceService;
-transactionDetails:any=null;
+transactionDetails:any=[];
   constructor(service: RemitterServiceService, private router: Router) {
    this.service = service;
   }
@@ -31,7 +31,11 @@ this.service.getTransactionBetweenDates(this.reportForm.value.startDate,this.rep
   this.transactionDetails=res;
 },err=>{
   console.log(err)
-  this.transactionDetails=null;
+  this.transactionDetails=[];
 })
   }
+
+  download() {
+    window.print();
+    }
 }

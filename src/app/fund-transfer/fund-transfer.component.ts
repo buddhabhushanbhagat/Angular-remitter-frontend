@@ -49,13 +49,12 @@ export class FundTransferComponent implements OnInit {
     this.remitterService.fundTransferToBeneficiary(this.fundTransferForm.value).subscribe(res => {
       console.log(res)
       this.transactionDetails = res;
-      if(this.transactionDetails.responseCode == 400) {
-        alert("Transaction failed!")
-      }
+      
       alert("Transaction happned succesfully")
+      this.router.navigate(["/home"]);
     },err=>{
       console.log(err)
-      alert("Transaction operation failed!!!")
+      alert("Transaction failed!!!"+err.error.message)
     })
   }
 
