@@ -4,3 +4,12 @@
     margin-left: 25%;
     margin-top: 2%;
 }
+mat-icon {
+    padding: 0%;
+        color:green;
+        font-size:xx-larger;   
+        /* display: inline-block;  */
+    }
+    .row{
+        flex-wrap: nowrap;
+    }

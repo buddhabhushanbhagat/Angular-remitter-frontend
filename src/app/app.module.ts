@@ -18,6 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatIconModule} from '@angular/material/icon'
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +45,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSelectModule,
     MatButtonModule,
     MatDatepickerModule,
-    NgbModule
+    NgbModule,
+    MatIconModule,NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

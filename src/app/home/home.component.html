@@ -29,12 +29,25 @@
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Address:</span> {{remitterDetails.remitter.address}}</li>
                                     <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span>{{remitterDetails.remitter.contactNo}}</li>
                                 </ul>
-                                <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
+                                <!-- <div class="search-results" *ngFor="let user of extResults;let i = index;">
+                                    <div (mouseenter)="mouseHovering(i)" (mouseleave)="mouseLeft(i)">
+                                      <div>{{ user.user }}</div>
+                                      <div class="ext">
+                                         <span class="icon-phone icon-font-icon_Phone"></span>{{ user.ext }}
+                                          <div *ngIf="user.isHovering">
+                                          <a [href]="'mailto:' + user.email" class="anchor"
+                                          ><span class="icon-email icon-font-icon_Mail name"></span>
+                                          <span class="email-text">Email</span></a>
+                                      </div>
+                                    </div>
+                                   </div>
+                                 </div> -->
+                                <!-- <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                                     <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
                                     <li><a href="#!"><i class="ti-facebook"></i></a></li>
                                     <li><a href="#!"><i class="ti-pinterest"></i></a></li>
                                     <li><a href="#!"><i class="ti-instagram"></i></a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>

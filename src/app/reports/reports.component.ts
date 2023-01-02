@@ -11,7 +11,11 @@ import { RemitterServiceService } from '../remitter-service.service';
 export class ReportsComponent implements OnInit{
 
 private service: RemitterServiceService;
+totalTransactionlength:any;
 transactionDetails:any=[];
+transactionId:any=[];
+p: any = 1;
+count: any = 5;
   constructor(service: RemitterServiceService, private router: Router) {
    this.service = service;
   }
@@ -29,11 +33,20 @@ transactionDetails:any=[];
 console.log(this.reportForm.value)
 this.service.getTransactionBetweenDates(this.reportForm.value.startDate,this.reportForm.value.endDate).subscribe(res=>{
   this.transactionDetails=res;
+  for (const iterator of this.transactionDetails) {
+    this.transactionId =iterator.transactionId;
+  }
+  this.totalTransactionlength = this.transactionDetails.length;
+  console.log(this.totalTransactionlength)
+  console.log(this.transactionDetails)
+  console.log(this.transactionId)
 },err=>{
   console.log(err)
   this.transactionDetails=[];
 })
   }
+
+
 
   download() {
     window.print();

@@ -14,13 +14,13 @@
         </option>
     </select>  
     </div> 
-    <div class="col-md-6 mb-4 pb-2">
+    <div class="col-md-5 mb-4 pb-2" style="margin-left: 90px;">
       <button style="margin-left: 10; width: 100px;" [disabled]="dropDownForm.invalid" type="submit" class="btn btn-success ">Fetch  </button>
       <button style="margin-left: 10%; width: 100px;" [disabled]="remitterForm.invalid" type="submit" class="btn btn-warning" (click) = "updateRemitter()">Update</button>
       <button style="margin-left: 10%; width: 100px;"[disabled]="dropDownForm.invalid" type="submit" class="btn btn-danger" (click) = "deleteRemitter()" >Delete</button>
     </div>
     
-    <div class="col-md-1 mb-4 pb-2"></div>
+    <div class="col-md-2 mb-4 pb-2"></div>
  
   </div>
 </form>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.name.invalid && remitterForm.controls.name.touched">Name required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.name.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.name.valid">done_outline</mat-icon>
         </div>
         </div>
       <div class="row">
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.email.invalid && remitterForm.controls.email.touched">Email Address required</span>        
-          <span class="text-success" *ngIf="remitterForm.controls.email.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.email.valid">done_outline</mat-icon>
         </div> 
       </div> 
 
@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.address.invalid && remitterForm.controls.address.touched">Address required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.address.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.address.valid">done_outline</mat-icon>
  
         </div> 
       </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.password.invalid && remitterForm.controls.password.touched">Password required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.password.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.password.valid">done_outline</mat-icon>
 
         </div> 
      </div>
@@ -81,7 +81,7 @@
       </div>
       <div class="col-md-3 mb-4 pb-2">
         <span class="text-danger" *ngIf="remitterForm.controls.contactNo.invalid && remitterForm.controls.contactNo.touched">Contact Number required</span>
-        <span class="text-success" *ngIf="remitterForm.controls.contactNo.valid">Good</span>
+        <mat-icon *ngIf="remitterForm.controls.contactNo.valid">done_outline</mat-icon>
 
       </div> 
    </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.accountNumber.invalid && remitterForm.controls.accountNumber.touched">Account Number required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.accountNumber.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.accountNumber.valid">done_outline</mat-icon>
         </div>
           
         </div> 
@@ -107,7 +107,7 @@
         </div>
         <div class="col-md-3 mb-4 pb-2">
           <span class="text-danger" *ngIf="remitterForm.controls.accountBalance.invalid && remitterForm.controls.accountBalance.touched">Account Balance required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.accountBalance.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.accountBalance.valid">done_outline</mat-icon>
 
         </div>
       </div> 
@@ -122,7 +122,8 @@
           <input type="radio" class="form-check-input" id="active" value="1" formControlName="accountStatus">Active
           <input type="radio" class="form-check-input" id="Inactive" value="0" formControlName="accountStatus">Inactive
           <span style="margin-left: 20px;" class="text-danger" *ngIf="remitterForm.controls.accountStatus.invalid">Account Status required</span>
-          <span class="text-success" *ngIf="remitterForm.controls.accountStatus.valid">Good</span>
+          <mat-icon *ngIf="remitterForm.controls.accountStatus.valid">done_outline</mat-icon>
+
 
         </div>
       </div>

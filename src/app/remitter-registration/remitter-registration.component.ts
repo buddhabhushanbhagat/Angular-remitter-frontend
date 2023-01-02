@@ -67,11 +67,23 @@ remitterForm = new FormGroup({
       this.router.navigate(["/home"]);
     },err=>{
   console.log(err)
+  alert("Update Failed!")
+
     })
   }
 
   deleteRemitter() {
+  console.log(this.dropDownForm.value.accountNumber)
+    //  this.remitterForm.addControl('customerId', new FormControl(this.remitterData.remitter.customerId));
+    this.Service.remitterDeleteByAccountNumber(this.dropDownForm.value.accountNumber).subscribe(res=>{
+      console.log("delete remitter result:"+res);
+      alert("Remitter Deleted Succesfully")
+      this.router.navigate(["/home"]);
 
+    },err=>{
+  console.log(err)
+  alert("Remitter delete failed")
+    })
   }
 
   remitrerCall(){
@@ -81,7 +93,7 @@ remitterForm = new FormGroup({
       this.responses = res;
       alert("Remitter registration registerd successfull")
       console.log(res)
-      this.router.navigate(["/home"]);
+       this.router.navigate(["/home"]);
     },
       error => {
         console.log(error)

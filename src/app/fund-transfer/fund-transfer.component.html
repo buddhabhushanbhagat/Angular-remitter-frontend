@@ -25,15 +25,15 @@
                               {{beneficiarySingle.accountNumber}}
                           </option>
                       </select>   
-                    <label class="form-label" for="typeExp">Bene Account Number</label>
-                  </div>
+                      <small class="text-danger" *ngIf="fundTransferForm.controls.accountNumber.invalid  && fundTransferForm.controls.accountNumber.touched">required field</small>
+                    </div>
                   </div>
                     <div class="col-md-6 mb-4 pb-2">
                       <div class="form-outline">
                         <input  formControlName="amounTransfered" type="number" id="typeText2" class="form-control form-control-lg"
                           placeholder="Amount" />
-                        <label class="form-label" for="typeText2">Amount</label>
-                      </div>
+                          <small class="text-danger" *ngIf="fundTransferForm.controls.amounTransfered.invalid  && fundTransferForm.controls.amounTransfered.touched"> amount required</small>
+                        </div>
                     </div>
                    </div>
         
@@ -42,13 +42,13 @@
                   <div >
                     <input formControlName="narration"  type="text" id="typeName" class="form-control form-control-lg" siez="17"
                       placeholder="summery of transaction" />
-                    <label class="form-label" for="typeName">Transaction Narration</label>
+                      <small class="text-danger" *ngIf="fundTransferForm.controls.narration.invalid  && fundTransferForm.controls.narration.touched"> Transaction Narration required</small>
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-14">
                     <div class="form-outline">
                        
-                        <button  style="margin-left: 120%;"  type="submit" class="btn btn-success ">Transfer</button>
+                        <button  style="margin-left: 120%; margin-top: 20px;" [disabled] = "fundTransferForm.invalid"  type="submit" class="btn btn-success ">Transfer</button>
                         
         
                     </div>

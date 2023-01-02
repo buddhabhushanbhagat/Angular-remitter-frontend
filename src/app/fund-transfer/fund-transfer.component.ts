@@ -49,9 +49,13 @@ export class FundTransferComponent implements OnInit {
     this.remitterService.fundTransferToBeneficiary(this.fundTransferForm.value).subscribe(res => {
       console.log(res)
       this.transactionDetails = res;
+      if(this.transactionDetails.responseStatus=="failed") {
+        alert("Transaction Failed!\n Remitter balanced is not enough of account number "+this.transactionDetails.remitterAccountNumber)
+      }else{
+        alert("Transaction happned succesfully")
+        this.router.navigate(["/home"]);
+      }
       
-      alert("Transaction happned succesfully")
-      this.router.navigate(["/home"]);
     },err=>{
       console.log(err)
       alert("Transaction failed!!!"+err.error.message)

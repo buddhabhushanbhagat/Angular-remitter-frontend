@@ -2,29 +2,25 @@
 
 <div class="container">
   <form [formGroup]="dropDownForm" (ngSubmit)="onDropDown()">
-    <div class="row" style=" margin-top: 10%;">
-     
+    <div class="row" style=" margin-top: 10%;"> 
       <div class="col-md-2 mb-4 pb-2"></div>
-      
       <div class="col-md-3 mb-4 pb-2">
-        <select   class="form-control" formControlName="accountNumber" id="raids">
+        <select class="form-control" formControlName="accountNumber" id="raids">
           <option value="">Beneficiary Account Number</option>
           <option *ngFor="let beneficiarySingle of beneficiaryUnderRemitter;" [value]="beneficiarySingle.accountNumber">
               {{beneficiarySingle.accountNumber}}
           </option>
       </select>  
       </div> 
-      <div class="col-md-6 mb-4 pb-2">
+      <div class="col-md-6 mb-4 pb-2" style="margin-left: 30px;">
         <button style="margin-left: 10; width: 100px;" [disabled]="dropDownForm.invalid" type="submit" class="btn btn-success ">Fetch  </button>
         <button style="margin-left: 10%; width: 100px;" [disabled]="beneficiaryForm.invalid" type="submit" class="btn btn-warning" (click) = "updateBeneficiary()">Update</button>
         <button style="margin-left: 10%; width: 100px;"[disabled]="dropDownForm.invalid" type="submit" class="btn btn-danger" (click) = "deleteBeneficiary()" >Delete</button>
       </div>
-      
       <div class="col-md-1 mb-4 pb-2"></div>
-   
     </div>
   </form>
-  
+
   <h1 class="text-center">Beneficiary Registration</h1>
   <form [formGroup]="beneficiaryForm" (ngSubmit)="beneficiary()">
     <!-- <div class="form-group"></div> -->
@@ -32,10 +28,10 @@
       <div class="col-md-3 mb-4 pb-2"></div>
       <div class="col-md-6 mb-4 pb-2">
         <input type="text" class="form-control"  placeholder="Enter Name" formControlName="name">
-      </div>
+      </div> 
+      <mat-icon *ngIf="beneficiaryForm.controls.name.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.name.invalid && beneficiaryForm.controls.name.touched ">Name required</small>
-        <span class="text-success" *ngIf="beneficiaryForm.controls.name.valid">Good</span>
       </div>
     </div> 
 
@@ -44,35 +40,31 @@
       <div class="col-md-6 mb-4 pb-2">
         <input type="text" class="form-control"  placeholder="Enter Account Number" formControlName="accountNumber">
       </div>
+      <mat-icon *ngIf="beneficiaryForm.controls.accountNumber.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.accountNumber.invalid && beneficiaryForm.controls.accountNumber.touched">Account Number required</small>
-        <span class="text-success" *ngIf="beneficiaryForm.controls.accountNumber.valid">Good</span>
       </div>
-        
-      </div> 
+    </div> 
 
     <div class="row">
       <div class="col-md-3 mb-4 pb-2"></div>
       <div class="col-md-6 mb-4 pb-2">
         <input type="text" class="form-control"  placeholder="Enter IFSC Code" formControlName="ifscCode">
       </div>
+      <mat-icon *ngIf="beneficiaryForm.controls.ifscCode.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.ifscCode.invalid  && beneficiaryForm.controls.ifscCode.touched">IFSC Code required</small>
-        <span class="text-success" *ngIf="beneficiaryForm.controls.ifscCode.valid">Good</span>
-
       </div>
     </div> 
-  
 
-   
     <div class="row">
       <div class="col-md-3 mb-4 pb-2"></div>
       <div class="col-md-6 mb-4 pb-2">
         <input type="text" class="form-control"  placeholder="Enter Email Address" formControlName="email">
       </div>
+      <mat-icon *ngIf="beneficiaryForm.controls.email.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.email.invalid  && beneficiaryForm.controls.email.touched">Email Address required</small>        
-        <span class="text-success" *ngIf="beneficiaryForm.controls.email.valid">Good</span>
       </div> 
     </div> 
 
@@ -81,10 +73,9 @@
       <div class="col-md-6 mb-4 pb-2">
         <input type="text" class="form-control"  placeholder="Enter Address" formControlName="address">
       </div>
+      <mat-icon *ngIf="beneficiaryForm.controls.address.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.address.invalid  && beneficiaryForm.controls.address.touched">Address required</small>
-        <span class="text-success" *ngIf="beneficiaryForm.controls.address.valid">Good</span>
-
       </div> 
     </div>
 
@@ -93,10 +84,9 @@
       <div class="col-md-6 mb-4 pb-2">
         <input type="number" class="form-control"  placeholder="Enter Max Transfer Limit" formControlName="maxTsfrLimit">
       </div>
+      <mat-icon *ngIf="beneficiaryForm.controls.maxTsfrLimit.valid">done_outline</mat-icon>
       <div class="col-md-3 mb-4 pb-2">
         <small class="text-danger" *ngIf="beneficiaryForm.controls.maxTsfrLimit.invalid  && beneficiaryForm.controls.maxTsfrLimit.touched"> MaxLimit required</small>
-        <span class="text-success" *ngIf="beneficiaryForm.controls.maxTsfrLimit.valid">Good</span>
-
       </div> 
    </div>
 
@@ -104,7 +94,6 @@
     <div class="col-md-3 mb-4 pb-2"></div>
     <div class="col-md-6 mb-4 pb-2">
       <input type="text" [value] = "remitterId" class="form-control" [value]="remitterId" readonly placeholder="Default Remitter Id">
-
     </div>
     <div class="col-md-3 mb-4 pb-2">
       <!-- <small class="text-danger" *ngIf="beneficiaryForm.controls.transferLimit.tou"> MaxLimit required</small>
@@ -120,13 +109,15 @@
         <label for="">Account Status:</label>
         <input type="radio" formControlName="accountStatus"  class="form-check-input" id="active" value="1" >Active
         <input type="radio"formControlName="accountStatus" class="form-check-input" id="Inactive" value="0" >Inactive
+        <mat-icon *ngIf="beneficiaryForm.controls.accountStatus.valid">done_outline</mat-icon>
+        <small class="text-danger" *ngIf="beneficiaryForm.controls.accountStatus.invalid  "> Account status required</small>
+
       </div>
+
     </div>
     <div class="col-md-3 mb-4 pb-2">
-      
     </div>
   </div>
- 
 
   <div class="row">
     <div class="col-md-3 mb-4 pb-2"></div>
@@ -142,14 +133,8 @@
     
     <div class="col-md-3 mb-4 pb-2"></div>
   </div>
-
-
-
- 
   <div>
-  
   </div>
-    
   </form>
 </div>
 

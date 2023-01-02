@@ -25,7 +25,18 @@ export class HomeComponent implements OnInit{
       console.log("error in getting remitter details with account number "+this.Service.getAccountNumber())
     })
 
-   console.log(this.remitterDetails) 
+  //  console.log(this.remitterDetails) 
   }
+
+
+//   extResults;
+// isHovering = false;
+
+//  mouseHovering(index:any) {
+//    this.extResults[index].isHovering = true; 
+//  }
+//  mouseLeft(index:any) {
+//      this.extResults[index].isHovering = false;
+//  }
   
 }
